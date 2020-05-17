@@ -134,11 +134,11 @@
 </template>
 
 <script>
-import { mixinDevice } from '@/utils/mixin'
-import { PageView } from '@/layouts'
-import DetailList from '@/components/tools/DetailList'
+import { mixinDevice } from '@/utils/mixin';
+import { PageView } from '@/layouts';
+import DetailList from '@/components/tools/DetailList';
 
-const DetailListItem = DetailList.Item
+const DetailListItem = DetailList.Item;
 
 export default {
   name: 'Advanced',
@@ -280,25 +280,25 @@ export default {
           remark: '-'
         }
       ]
-    }
+    };
   },
   filters: {
     statusFilter (status) {
       const statusMap = {
         'agree': '成功',
         'reject': '驳回'
-      }
-      return statusMap[status]
+      };
+      return statusMap[status];
     },
     statusTypeFilter (type) {
       const statusTypeMap = {
         'agree': 'success',
         'reject': 'error'
-      }
-      return statusTypeMap[type]
+      };
+      return statusTypeMap[type];
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

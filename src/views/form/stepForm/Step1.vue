@@ -68,20 +68,20 @@ export default {
       labelCol: { lg: { span: 5 }, sm: { span: 5 } },
       wrapperCol: { lg: { span: 19 }, sm: { span: 19 } },
       form: this.$form.createForm(this)
-    }
+    };
   },
   methods: {
     nextStep () {
-      const { form: { validateFields } } = this
+      const { form: { validateFields } } = this;
       // 先校验，通过表单校验后，才进入下一步
       validateFields((err, values) => {
         if (!err) {
-          this.$emit('nextStep')
+          this.$emit('nextStep');
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

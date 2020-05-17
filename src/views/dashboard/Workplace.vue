@@ -110,16 +110,16 @@
 </template>
 
 <script>
-import { timeFix } from '@/utils/util'
-import { mapState } from 'vuex'
+import { timeFix } from '@/utils/util';
+import { mapState } from 'vuex';
 
-import { PageView } from '@/layouts'
-import HeadInfo from '@/components/tools/HeadInfo'
-import { Radar } from '@/components'
+import { PageView } from '@/layouts';
+import HeadInfo from '@/components/tools/HeadInfo';
+import { Radar } from '@/components';
 
-import { getRoleList, getServiceList } from '@/api/manage'
+import { getRoleList, getServiceList } from '@/api/manage';
 
-const DataSet = require('@antv/data-set')
+const DataSet = require('@antv/data-set');
 
 export default {
   name: 'Workplace',
@@ -177,7 +177,7 @@ export default {
         { item: '引用', a: 70, b: 50, c: 40 }
       ],
       radarData: []
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -185,66 +185,66 @@ export default {
       welcome: (state) => state.user.welcome
     }),
     userInfo () {
-      return this.$store.getters.userInfo
+      return this.$store.getters.userInfo;
     }
   },
   created () {
-    this.user = this.userInfo
-    this.avatar = this.userInfo.avatar
+    this.user = this.userInfo;
+    this.avatar = this.userInfo.avatar;
 
     getRoleList().then(res => {
       // console.log('workplace -> call getRoleList()', res)
-    })
+    });
 
     getServiceList().then(res => {
       // console.log('workplace -> call getServiceList()', res)
-    })
+    });
   },
   mounted () {
-    this.getProjects()
-    this.getActivity()
-    this.getTeams()
-    this.initRadar()
+    this.getProjects();
+    this.getActivity();
+    this.getTeams();
+    this.initRadar();
   },
   methods: {
     getProjects () {
       this.$http.get('/list/search/projects')
         .then(res => {
-          this.projects = res.result && res.result.data
-          this.loading = false
-        })
+          this.projects = res.result && res.result.data;
+          this.loading = false;
+        });
     },
     getActivity () {
       this.$http.get('/workplace/activity')
         .then(res => {
-          this.activities = res.result
-        })
+          this.activities = res.result;
+        });
     },
     getTeams () {
       this.$http.get('/workplace/teams')
         .then(res => {
-          this.teams = res.result
-        })
+          this.teams = res.result;
+        });
     },
     initRadar () {
-      this.radarLoading = true
+      this.radarLoading = true;
 
       this.$http.get('/workplace/radar')
         .then(res => {
-          const dv = new DataSet.View().source(res.result)
+          const dv = new DataSet.View().source(res.result);
           dv.transform({
             type: 'fold',
             fields: ['个人', '团队', '部门'],
             key: 'user',
             value: 'score'
-          })
+          });
 
-          this.radarData = dv.rows
-          this.radarLoading = false
-        })
+          this.radarData = dv.rows;
+          this.radarLoading = false;
+        });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

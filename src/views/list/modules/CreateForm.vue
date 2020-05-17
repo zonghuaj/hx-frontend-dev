@@ -37,31 +37,31 @@ export default {
       confirmLoading: false,
 
       form: this.$form.createForm(this)
-    }
+    };
   },
   methods: {
     add () {
-      this.visible = true
+      this.visible = true;
     },
     handleSubmit () {
-      const { form: { validateFields } } = this
-      this.confirmLoading = true
+      const { form: { validateFields } } = this;
+      this.confirmLoading = true;
       validateFields((errors, values) => {
         if (!errors) {
-          console.log('values', values)
+          console.log('values', values);
           setTimeout(() => {
-            this.visible = false
-            this.confirmLoading = false
-            this.$emit('ok', values)
-          }, 1500)
+            this.visible = false;
+            this.confirmLoading = false;
+            this.$emit('ok', values);
+          }, 1500);
         } else {
-          this.confirmLoading = false
+          this.confirmLoading = false;
         }
-      })
+      });
     },
     handleCancel () {
-      this.visible = false
+      this.visible = false;
     }
   }
-}
+};
 </script>

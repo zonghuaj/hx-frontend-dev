@@ -96,10 +96,10 @@
 </template>
 
 <script>
-import { PageView, RouteView } from '@/layouts'
-import { AppPage, ArticlePage, ProjectPage } from './page'
+import { PageView, RouteView } from '@/layouts';
+import { AppPage, ArticlePage, ProjectPage } from './page';
 
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -134,56 +134,56 @@ export default {
         }
       ],
       noTitleKey: 'app'
-    }
+    };
   },
   mounted () {
-    this.getTeams()
+    this.getTeams();
   },
   methods: {
     ...mapGetters(['nickname', 'avatar']),
 
     getTeams () {
       this.$http.get('/workplace/teams').then(res => {
-        this.teams = res.result
-        this.teamSpinning = false
-      })
+        this.teams = res.result;
+        this.teamSpinning = false;
+      });
     },
 
     handleTabChange (key, type) {
-      this[type] = key
+      this[type] = key;
     },
 
     handleTagClose (removeTag) {
-      const tags = this.tags.filter(tag => tag !== removeTag)
-      this.tags = tags
+      const tags = this.tags.filter(tag => tag !== removeTag);
+      this.tags = tags;
     },
 
     showTagInput () {
-      this.tagInputVisible = true
+      this.tagInputVisible = true;
       this.$nextTick(() => {
-        this.$refs.tagInput.focus()
-      })
+        this.$refs.tagInput.focus();
+      });
     },
 
     handleInputChange (e) {
-      this.tagInputValue = e.target.value
+      this.tagInputValue = e.target.value;
     },
 
     handleTagInputConfirm () {
-      const inputValue = this.tagInputValue
-      let tags = this.tags
+      const inputValue = this.tagInputValue;
+      let tags = this.tags;
       if (inputValue && !tags.includes(inputValue)) {
-        tags = [...tags, inputValue]
+        tags = [...tags, inputValue];
       }
 
       Object.assign(this, {
         tags,
         tagInputVisible: false,
         tagInputValue: ''
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

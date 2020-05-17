@@ -79,8 +79,8 @@
 </template>
 
 <script>
-import { STable } from '@/components'
-import RoleModal from './modules/RoleModal'
+import { STable } from '@/components';
+import RoleModal from './modules/RoleModal';
 
 export default {
   name: 'TableList',
@@ -131,37 +131,37 @@ export default {
         return this.$http.get('/role', {
           params: Object.assign(parameter, this.queryParam)
         }).then(res => {
-          return res.result
-        })
+          return res.result;
+        });
       },
 
       selectedRowKeys: [],
       selectedRows: []
-    }
+    };
   },
   methods: {
     handleEdit (record) {
-      this.mdl = Object.assign({}, record)
+      this.mdl = Object.assign({}, record);
 
       this.mdl.permissions.forEach(permission => {
         permission.actionsOptions = permission.actionEntitySet.map(action => {
-          return { label: action.describe, value: action.action, defaultCheck: action.defaultCheck }
-        })
-      })
+          return { label: action.describe, value: action.action, defaultCheck: action.defaultCheck };
+        });
+      });
 
-      console.log(this.mdl)
-      this.visible = true
+      console.log(this.mdl);
+      this.visible = true;
     },
     handleOk () {
       // 新增/修改 成功时，重载列表
-      this.$refs.table.refresh()
+      this.$refs.table.refresh();
     },
     onChange (selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys
-      this.selectedRows = selectedRows
+      this.selectedRowKeys = selectedRowKeys;
+      this.selectedRows = selectedRows;
     },
     toggleAdvanced () {
-      this.advanced = !this.advanced
+      this.advanced = !this.advanced;
     }
   },
   watch: {
@@ -178,5 +178,5 @@ export default {
       }
       */
   }
-}
+};
 </script>

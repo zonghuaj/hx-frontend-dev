@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import { PageView, RouteView } from '@/layouts'
-import { mixinDevice } from '@/utils/mixin.js'
+import { PageView, RouteView } from '@/layouts';
+import { mixinDevice } from '@/utils/mixin.js';
 
 export default {
   components: {
@@ -85,26 +85,26 @@ export default {
       },
 
       pageTitle: ''
-    }
+    };
   },
   mounted () {
-    this.updateMenu()
+    this.updateMenu();
   },
   methods: {
     onOpenChange (openKeys) {
-      this.openKeys = openKeys
+      this.openKeys = openKeys;
     },
     updateMenu () {
-      const routes = this.$route.matched.concat()
-      this.selectedKeys = [ routes.pop().path ]
+      const routes = this.$route.matched.concat();
+      this.selectedKeys = [ routes.pop().path ];
     }
   },
   watch: {
     '$route' (val) {
-      this.updateMenu()
+      this.updateMenu();
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

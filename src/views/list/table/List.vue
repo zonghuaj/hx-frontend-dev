@@ -115,9 +115,9 @@
 </template>
 
 <script>
-import moment from 'moment'
-import { STable } from '@/components'
-import { getRoleList, getServiceList } from '@/api/manage'
+import moment from 'moment';
+import { STable } from '@/components';
+import { getRoleList, getServiceList } from '@/api/manage';
 
 export default {
   name: 'TableList',
@@ -171,70 +171,70 @@ export default {
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
-        console.log('loadData.parameter', parameter)
+        console.log('loadData.parameter', parameter);
         return getServiceList(Object.assign(parameter, this.queryParam))
           .then(res => {
-            return res.result
-          })
+            return res.result;
+          });
       },
       selectedRowKeys: [],
       selectedRows: [],
 
       // custom table alert & rowSelection
       options: {
-        alert: { show: true, clear: () => { this.selectedRowKeys = [] } },
+        alert: { show: true, clear: () => { this.selectedRowKeys = []; } },
         rowSelection: {
           selectedRowKeys: this.selectedRowKeys,
           onChange: this.onSelectChange
         }
       },
       optionAlertShow: false
-    }
+    };
   },
   created () {
-    this.tableOption()
-    getRoleList({ t: new Date() })
+    this.tableOption();
+    getRoleList({ t: new Date() });
   },
   methods: {
     tableOption () {
       if (!this.optionAlertShow) {
         this.options = {
-          alert: { show: true, clear: () => { this.selectedRowKeys = [] } },
+          alert: { show: true, clear: () => { this.selectedRowKeys = []; } },
           rowSelection: {
             selectedRowKeys: this.selectedRowKeys,
             onChange: this.onSelectChange
           }
-        }
-        this.optionAlertShow = true
+        };
+        this.optionAlertShow = true;
       } else {
         this.options = {
           alert: false,
           rowSelection: null
-        }
-        this.optionAlertShow = false
+        };
+        this.optionAlertShow = false;
       }
     },
 
     handleEdit (record) {
-      this.$emit('onEdit', record)
+      this.$emit('onEdit', record);
     },
     handleOk () {
 
     },
 
     onSelectChange (selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys
-      this.selectedRows = selectedRows
+      this.selectedRowKeys = selectedRowKeys;
+      this.selectedRows = selectedRows;
     },
     toggleAdvanced () {
-      this.advanced = !this.advanced
+      this.advanced = !this.advanced;
     },
 
     resetSearchForm () {
       this.queryParam = {
         date: moment(new Date())
-      }
+      };
     }
   }
-}
+};
 </script>

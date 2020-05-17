@@ -110,11 +110,11 @@
 </template>
 
 <script>
-import moment from 'moment'
-import { STable, Ellipsis } from '@/components'
-import StepByStepModal from './modules/StepByStepModal'
-import CreateForm from './modules/CreateForm'
-import { getRoleList, getServiceList } from '@/api/manage'
+import moment from 'moment';
+import { STable, Ellipsis } from '@/components';
+import StepByStepModal from './modules/StepByStepModal';
+import CreateForm from './modules/CreateForm';
+import { getRoleList, getServiceList } from '@/api/manage';
 
 const statusMap = {
   0: {
@@ -133,7 +133,7 @@ const statusMap = {
     status: 'error',
     text: '异常'
   }
-}
+};
 
 export default {
   name: 'TableList',
@@ -191,43 +191,43 @@ export default {
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
-        console.log('loadData.parameter', parameter)
+        console.log('loadData.parameter', parameter);
         return getServiceList(Object.assign(parameter, this.queryParam))
           .then(res => {
-            return res.result
-          })
+            return res.result;
+          });
       },
       selectedRowKeys: [],
       selectedRows: [],
 
       // custom table alert & rowSelection
       options: {
-        alert: { show: true, clear: () => { this.selectedRowKeys = [] } },
+        alert: { show: true, clear: () => { this.selectedRowKeys = []; } },
         rowSelection: {
           selectedRowKeys: this.selectedRowKeys,
           onChange: this.onSelectChange
         }
       },
       optionAlertShow: false
-    }
+    };
   },
   filters: {
     statusFilter (type) {
-      return statusMap[type].text
+      return statusMap[type].text;
     },
     statusTypeFilter (type) {
-      return statusMap[type].status
+      return statusMap[type].status;
     }
   },
   created () {
-    this.tableOption()
-    getRoleList({ t: new Date() })
+    this.tableOption();
+    getRoleList({ t: new Date() });
   },
   methods: {
     tableOption () {
       if (!this.optionAlertShow) {
         this.options = {
-          alert: { show: true, clear: () => { this.selectedRowKeys = [] } },
+          alert: { show: true, clear: () => { this.selectedRowKeys = []; } },
           rowSelection: {
             selectedRowKeys: this.selectedRowKeys,
             onChange: this.onSelectChange,
@@ -238,43 +238,43 @@ export default {
               }
             })
           }
-        }
-        this.optionAlertShow = true
+        };
+        this.optionAlertShow = true;
       } else {
         this.options = {
           alert: false,
           rowSelection: null
-        }
-        this.optionAlertShow = false
+        };
+        this.optionAlertShow = false;
       }
     },
 
     handleEdit (record) {
-      console.log(record)
-      this.$refs.modal.edit(record)
+      console.log(record);
+      this.$refs.modal.edit(record);
     },
     handleSub (record) {
       if (record.status !== 0) {
-        this.$message.info(`${record.no} 订阅成功`)
+        this.$message.info(`${record.no} 订阅成功`);
       } else {
-        this.$message.error(`${record.no} 订阅失败，规则已关闭`)
+        this.$message.error(`${record.no} 订阅失败，规则已关闭`);
       }
     },
     handleOk () {
-      this.$refs.table.refresh()
+      this.$refs.table.refresh();
     },
     onSelectChange (selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys
-      this.selectedRows = selectedRows
+      this.selectedRowKeys = selectedRowKeys;
+      this.selectedRows = selectedRows;
     },
     toggleAdvanced () {
-      this.advanced = !this.advanced
+      this.advanced = !this.advanced;
     },
     resetSearchForm () {
       this.queryParam = {
         date: moment(new Date())
-      }
+      };
     }
   }
-}
+};
 </script>

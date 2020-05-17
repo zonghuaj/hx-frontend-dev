@@ -70,10 +70,10 @@
 </template>
 
 <script>
-import HeadInfo from '@/components/tools/HeadInfo'
-import TaskForm from './modules/TaskForm'
+import HeadInfo from '@/components/tools/HeadInfo';
+import TaskForm from './modules/TaskForm';
 
-const data = []
+const data = [];
 data.push({
   title: 'Alipay',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
@@ -83,7 +83,7 @@ data.push({
   progress: {
     value: 90
   }
-})
+});
 data.push({
   title: 'Angular',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
@@ -93,7 +93,7 @@ data.push({
   progress: {
     value: 54
   }
-})
+});
 data.push({
   title: 'Ant Design',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
@@ -103,7 +103,7 @@ data.push({
   progress: {
     value: 66
   }
-})
+});
 data.push({
   title: 'Ant Design Pro',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
@@ -113,7 +113,7 @@ data.push({
   progress: {
     value: 30
   }
-})
+});
 data.push({
   title: 'Bootstrap',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
@@ -124,7 +124,7 @@ data.push({
     status: 'exception',
     value: 100
   }
-})
+});
 
 export default {
   name: 'StandardList',
@@ -136,13 +136,13 @@ export default {
     return {
       data,
       status: 'all'
-    }
+    };
   },
   methods: {
     edit (record) {
-      console.log('record', record)
+      console.log('record', record);
       // mockdata
-      record.taskName = '测试'
+      record.taskName = '测试';
       // mockend
       this.$dialog(TaskForm,
         // component props
@@ -155,10 +155,10 @@ export default {
           width: 700,
           centered: true,
           maskClosable: false
-        })
+        });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

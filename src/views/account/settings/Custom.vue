@@ -1,11 +1,11 @@
 <script>
-import { colorList } from '@/components/SettingDrawer/settingConfig'
-import ASwitch from 'ant-design-vue/es/switch'
-import AList from 'ant-design-vue/es/list'
-import AListItem from 'ant-design-vue/es/list/Item'
-import { mixin } from '@/utils/mixin'
+import { colorList } from '@/components/SettingDrawer/settingConfig';
+import ASwitch from 'ant-design-vue/es/switch';
+import AList from 'ant-design-vue/es/list';
+import AListItem from 'ant-design-vue/es/list/Item';
+import { mixin } from '@/utils/mixin';
 
-const Meta = AListItem.Meta
+const Meta = AListItem.Meta;
 
 export default {
   components: {
@@ -17,28 +17,28 @@ export default {
   mixins: [mixin],
   data () {
     return {
-    }
+    };
   },
   filters: {
     themeFilter (theme) {
       const themeMap = {
         'dark': '暗色',
         'light': '白色'
-      }
-      return themeMap[theme]
+      };
+      return themeMap[theme];
     }
   },
   methods: {
     colorFilter (color) {
-      const c = colorList.find(o => o.color === color)
-      return c && c.key
+      const c = colorList.find(o => o.color === color);
+      return c && c.key;
     },
 
     onChange (checked) {
       if (checked) {
-        this.$store.dispatch('ToggleTheme', 'dark')
+        this.$store.dispatch('ToggleTheme', 'dark');
       } else {
-        this.$store.dispatch('ToggleTheme', 'light')
+        this.$store.dispatch('ToggleTheme', 'light');
       }
     }
   },
@@ -65,9 +65,9 @@ export default {
           </Meta>
         </AListItem>
       </AList>
-    )
+    );
   }
-}
+};
 </script>
 
 <style scoped>

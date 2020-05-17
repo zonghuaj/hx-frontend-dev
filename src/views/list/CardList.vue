@@ -32,15 +32,15 @@
 
 <script>
 
-const dataSource = []
-dataSource.push({})
+const dataSource = [];
+dataSource.push({});
 for (let i = 0; i < 11; i++) {
   dataSource.push({
     id: i,
     title: 'Alipay',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
     content: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
-  })
+  });
 }
 
 export default {
@@ -56,8 +56,8 @@ export default {
           // 回调，可不写
           callback: () => {
             // this.$message.info('快速开始被单击')
-            this.testFun()
-            console.log('call[\'快速开始\'] action')
+            this.testFun();
+            console.log('call[\'快速开始\'] action');
           }
         },
         { icon: 'info-circle-o', href: '#', title: '产品简介' },
@@ -65,14 +65,14 @@ export default {
       ],
       extraImage: 'https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png',
       dataSource
-    }
+    };
   },
   methods: {
     testFun () {
-      this.$message.info('快速开始被点击！')
+      this.$message.info('快速开始被点击！');
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

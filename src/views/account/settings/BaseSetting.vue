@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import AvatarModal from './AvatarModal'
+import AvatarModal from './AvatarModal';
 
 export default {
   components: {
@@ -94,14 +94,14 @@ export default {
         fixed: true,
         fixedNumber: [1, 1]
       }
-    }
+    };
   },
   methods: {
     setavatar (url) {
-      this.option.img = url
+      this.option.img = url;
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

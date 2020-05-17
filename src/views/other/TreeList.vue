@@ -50,10 +50,10 @@
 </template>
 
 <script>
-import STree from '@/components/Tree/Tree'
-import { STable } from '@/components'
-import OrgModal from './modules/OrgModal'
-import { getOrgTree, getServiceList } from '@/api/manage'
+import STree from '@/components/Tree/Tree';
+import { STable } from '@/components';
+import OrgModal from './modules/OrgModal';
+import { getOrgTree, getServiceList } from '@/api/manage';
 
 export default {
   name: 'TreeList',
@@ -106,37 +106,37 @@ export default {
       loadData: parameter => {
         return getServiceList(Object.assign(parameter, this.queryParam))
           .then(res => {
-            return res.result
-          })
+            return res.result;
+          });
       },
       orgTree: [],
       selectedRowKeys: [],
       selectedRows: []
-    }
+    };
   },
   created () {
     getOrgTree().then(res => {
-      this.orgTree = res.result
-    })
+      this.orgTree = res.result;
+    });
   },
   methods: {
     handleClick (e) {
-      console.log('handleClick', e)
+      console.log('handleClick', e);
       this.queryParam = {
         key: e.key
-      }
-      this.$refs.table.refresh(true)
+      };
+      this.$refs.table.refresh(true);
     },
     handleAdd (item) {
-      console.log('add button, item', item)
-      this.$message.info(`提示：你点了 ${item.key} - ${item.title} `)
-      this.$refs.modal.add(item.key)
+      console.log('add button, item', item);
+      this.$message.info(`提示：你点了 ${item.key} - ${item.title} `);
+      this.$refs.modal.add(item.key);
     },
     handleTitleClick (item) {
-      console.log('handleTitleClick', item)
+      console.log('handleTitleClick', item);
     },
     titleClick (e) {
-      console.log('titleClick', e)
+      console.log('titleClick', e);
     },
     handleSaveOk () {
 
@@ -146,11 +146,11 @@ export default {
     },
 
     onSelectChange (selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys
-      this.selectedRows = selectedRows
+      this.selectedRowKeys = selectedRowKeys;
+      this.selectedRows = selectedRows;
     }
   }
-}
+};
 </script>
 
 <style lang="less">

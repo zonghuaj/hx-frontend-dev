@@ -27,40 +27,40 @@ export default {
         active: () => {
           switch (this.$route.path) {
             case '/list/search/article':
-              return '1'
+              return '1';
             case '/list/search/project':
-              return '2'
+              return '2';
             case '/list/search/application':
-              return '3'
+              return '3';
             default:
-              return '1'
+              return '1';
           }
         },
         callback: (key) => {
           switch (key) {
             case '1':
-              this.$router.push('/list/search/article')
-              break
+              this.$router.push('/list/search/article');
+              break;
             case '2':
-              this.$router.push('/list/search/project')
-              break
+              this.$router.push('/list/search/project');
+              break;
             case '3':
-              this.$router.push('/list/search/application')
-              break
+              this.$router.push('/list/search/application');
+              break;
             default:
-              this.$router.push('/workplace')
+              this.$router.push('/workplace');
           }
         }
       },
       search: true
-    }
+    };
   },
   computed: {
 
   },
   methods: {
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

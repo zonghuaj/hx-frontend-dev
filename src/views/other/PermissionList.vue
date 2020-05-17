@@ -134,7 +134,7 @@
 </template>
 
 <script>
-import { STable } from '@/components'
+import { STable } from '@/components';
 
 export default {
   name: 'TableList',
@@ -195,30 +195,30 @@ export default {
         return this.$http.get('/permission', {
           params: Object.assign(parameter, this.queryParam)
         }).then(res => {
-          const result = res.result
+          const result = res.result;
           result.data.map(permission => {
-            permission.actionList = JSON.parse(permission.actionData)
-            return permission
-          })
-          return result
-        })
+            permission.actionList = JSON.parse(permission.actionData);
+            return permission;
+          });
+          return result;
+        });
       },
 
       selectedRowKeys: [],
       selectedRows: []
-    }
+    };
   },
   filters: {
     statusFilter (status) {
       const statusMap = {
         1: '正常',
         2: '禁用'
-      }
-      return statusMap[status]
+      };
+      return statusMap[status];
     }
   },
   created () {
-    this.loadPermissionList()
+    this.loadPermissionList();
   },
   methods: {
     loadPermissionList () {
@@ -232,26 +232,26 @@ export default {
           { label: '删除', value: 'delete', defaultChecked: false },
           { label: '导入', value: 'import', defaultChecked: false },
           { label: '导出', value: 'export', defaultChecked: false }
-        ]
-        setTimeout(resolve(data), 1500)
+        ];
+        setTimeout(resolve(data), 1500);
       }).then(res => {
-        this.permissionList = res
-      })
+        this.permissionList = res;
+      });
     },
     handleEdit (record) {
-      this.mdl = Object.assign({}, record)
-      console.log(this.mdl)
-      this.visible = true
+      this.mdl = Object.assign({}, record);
+      console.log(this.mdl);
+      this.visible = true;
     },
     handleOk () {
 
     },
     onChange (selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys
-      this.selectedRows = selectedRows
+      this.selectedRowKeys = selectedRowKeys;
+      this.selectedRows = selectedRows;
     },
     toggleAdvanced () {
-      this.advanced = !this.advanced
+      this.advanced = !this.advanced;
     }
   },
   watch: {
@@ -268,5 +268,5 @@ export default {
       }
       */
   }
-}
+};
 </script>

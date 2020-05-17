@@ -75,10 +75,10 @@
 </template>
 
 <script>
-import RepositoryForm from './RepositoryForm'
-import TaskForm from './TaskForm'
-import FooterToolBar from '@/components/FooterToolbar'
-import { mixin, mixinDevice } from '@/utils/mixin'
+import RepositoryForm from './RepositoryForm';
+import TaskForm from './TaskForm';
+import FooterToolBar from '@/components/FooterToolbar';
+import { mixin, mixinDevice } from '@/utils/mixin';
 
 const fieldLabels = {
   name: '仓库名',
@@ -93,7 +93,7 @@ const fieldLabels = {
   approver2: '责任人',
   dateRange2: '生效日期',
   type2: '任务类型'
-}
+};
 
 export default {
   name: 'AdvancedForm',
@@ -163,14 +163,14 @@ export default {
       ],
 
       errors: []
-    }
+    };
   },
   methods: {
     handleSubmit (e) {
-      e.preventDefault()
+      e.preventDefault();
     },
     newMember () {
-      const length = this.data.length
+      const length = this.data.length;
       this.data.push({
         key: length === 0 ? '1' : (parseInt(this.data[length - 1].key) + 1).toString(),
         name: '',
@@ -178,93 +178,93 @@ export default {
         department: '',
         editable: true,
         isNew: true
-      })
+      });
     },
     remove (key) {
-      const newData = this.data.filter(item => item.key !== key)
-      this.data = newData
+      const newData = this.data.filter(item => item.key !== key);
+      this.data = newData;
     },
     saveRow (record) {
-      this.memberLoading = true
-      const { key, name, workId, department } = record
+      this.memberLoading = true;
+      const { key, name, workId, department } = record;
       if (!name || !workId || !department) {
-        this.memberLoading = false
-        this.$message.error('请填写完整成员信息。')
-        return
+        this.memberLoading = false;
+        this.$message.error('请填写完整成员信息。');
+        return;
       }
       // 模拟网络请求、卡顿 800ms
       new Promise((resolve) => {
         setTimeout(() => {
-          resolve({ loop: false })
-        }, 800)
+          resolve({ loop: false });
+        }, 800);
       }).then(() => {
-        const target = this.data.find(item => item.key === key)
-        target.editable = false
-        target.isNew = false
-        this.memberLoading = false
-      })
+        const target = this.data.find(item => item.key === key);
+        target.editable = false;
+        target.isNew = false;
+        this.memberLoading = false;
+      });
     },
     toggle (key) {
-      const target = this.data.find(item => item.key === key)
-      target._originalData = { ...target }
-      target.editable = !target.editable
+      const target = this.data.find(item => item.key === key);
+      target._originalData = { ...target };
+      target.editable = !target.editable;
     },
     getRowByKey (key, newData) {
-      const data = this.data
-      return (newData || data).find(item => item.key === key)
+      const data = this.data;
+      return (newData || data).find(item => item.key === key);
     },
     cancel (key) {
-      const target = this.data.find(item => item.key === key)
-      Object.keys(target).forEach(key => { target[key] = target._originalData[key] })
-      target._originalData = undefined
+      const target = this.data.find(item => item.key === key);
+      Object.keys(target).forEach(key => { target[key] = target._originalData[key]; });
+      target._originalData = undefined;
     },
     handleChange (value, key, column) {
-      const newData = [...this.data]
-      const target = newData.find(item => key === item.key)
+      const newData = [...this.data];
+      const target = newData.find(item => key === item.key);
       if (target) {
-        target[column] = value
-        this.data = newData
+        target[column] = value;
+        this.data = newData;
       }
     },
 
     // 最终全页面提交
     validate () {
-      const { $refs: { repository, task }, $notification } = this
+      const { $refs: { repository, task }, $notification } = this;
       const repositoryForm = new Promise((resolve, reject) => {
         repository.form.validateFields((err, values) => {
           if (err) {
-            reject(err)
-            return
+            reject(err);
+            return;
           }
-          resolve(values)
-        })
-      })
+          resolve(values);
+        });
+      });
       const taskForm = new Promise((resolve, reject) => {
         task.form.validateFields((err, values) => {
           if (err) {
-            reject(err)
-            return
+            reject(err);
+            return;
           }
-          resolve(values)
-        })
-      })
+          resolve(values);
+        });
+      });
 
       // clean this.errors
-      this.errors = []
+      this.errors = [];
       Promise.all([repositoryForm, taskForm]).then(values => {
         $notification['error']({
           message: 'Received values of form:',
           description: JSON.stringify(values)
-        })
+        });
       }).catch(() => {
-        const errors = Object.assign({}, repository.form.getFieldsError(), task.form.getFieldsError())
-        const tmp = { ...errors }
-        this.errorList(tmp)
-      })
+        const errors = Object.assign({}, repository.form.getFieldsError(), task.form.getFieldsError());
+        const tmp = { ...errors };
+        this.errorList(tmp);
+      });
     },
     errorList (errors) {
       if (!errors || errors.length === 0) {
-        return
+        return;
       }
       this.errors = Object.keys(errors)
         .filter(key => errors[key])
@@ -272,16 +272,16 @@ export default {
           key: key,
           message: errors[key][0],
           fieldLabel: fieldLabels[key]
-        }))
+        }));
     },
     scrollToField (fieldKey) {
-      const labelNode = document.querySelector(`label[for="${fieldKey}"]`)
+      const labelNode = document.querySelector(`label[for="${fieldKey}"]`);
       if (labelNode) {
-        labelNode.scrollIntoView(true)
+        labelNode.scrollIntoView(true);
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

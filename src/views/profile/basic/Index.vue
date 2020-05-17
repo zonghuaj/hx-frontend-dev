@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import { PageView } from '@/layouts'
-import { STable } from '@/components'
-import DetailList from '@/components/tools/DetailList'
-const DetailListItem = DetailList.Item
+import { PageView } from '@/layouts';
+import { STable } from '@/components';
+import DetailList from '@/components/tools/DetailList';
+const DetailListItem = DetailList.Item;
 
 export default {
   components: {
@@ -136,10 +136,10 @@ export default {
             pageNo: 1,
             totalPage: 1,
             totalCount: 10
-          })
+          });
         }).then(res => {
-          return res
-        })
+          return res;
+        });
       },
 
       scheduleColumns: [
@@ -219,12 +219,12 @@ export default {
             pageNo: 1,
             totalPage: 1,
             totalCount: 10
-          })
+          });
         }).then(res => {
-          return res
-        })
+          return res;
+        });
       }
-    }
+    };
   },
   filters: {
     statusFilter (status) {
@@ -232,17 +232,17 @@ export default {
         'processing': '进行中',
         'success': '完成',
         'failed': '失败'
-      }
-      return statusMap[status]
+      };
+      return statusMap[status];
     }
   },
   computed: {
     title () {
-      return this.$route.meta.title
+      return this.$route.meta.title;
     }
   }
 
-}
+};
 </script>
 
 <style lang="less" scoped>

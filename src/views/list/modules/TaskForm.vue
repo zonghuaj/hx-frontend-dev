@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import pick from 'lodash.pick'
+import pick from 'lodash.pick';
 
 export default {
   name: 'TaskForm',
@@ -56,34 +56,34 @@ export default {
         sm: { span: 13 }
       },
       form: this.$form.createForm(this)
-    }
+    };
   },
   mounted () {
-    console.log('this.', this.record)
+    console.log('this.', this.record);
     if (this.record) {
-      this.form.setFieldsValue(pick(this.record, ['taskName']))
+      this.form.setFieldsValue(pick(this.record, ['taskName']));
     }
   },
   methods: {
     onOk () {
       return new Promise(resolve => {
-        resolve(true)
-      })
+        resolve(true);
+      });
     },
     onCancel () {
       return new Promise(resolve => {
-        resolve(true)
-      })
+        resolve(true);
+      });
     },
     handleSubmit () {
-      const { form: { validateFields } } = this
-      this.visible = true
+      const { form: { validateFields } } = this;
+      this.visible = true;
       validateFields((errors, values) => {
         if (!errors) {
-          console.log('values', values)
+          console.log('values', values);
         }
-      })
+      });
     }
   }
-}
+};
 </script>

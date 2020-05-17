@@ -53,12 +53,12 @@ const constantRouterComponents = {
   'NotificationSettings': () => import('@/views/account/settings/Notification'),
 
   'TestWork': () => import(/* webpackChunkName: "TestWork" */ '@/views/dashboard/TestWork')
-}
+};
 
 // 前端未找到页面路由（固定不用改）
 const notFoundRouter = {
   path: '*', redirect: '/404', hidden: true
-}
+};
 
 // 根级菜单
 const rootRouter = {
@@ -71,7 +71,7 @@ const rootRouter = {
     title: '首页'
   },
   children: []
-}
+};
 
 /**
  * 动态生成菜单
@@ -81,24 +81,24 @@ const rootRouter = {
 export const generatorDynamicRouter = (token) => {
   return new Promise((resolve, reject) => {
     loginService.getCurrentUserNav(token).then(res => {
-      console.log('res', res)
-      const { result } = res
-      const menuNav = []
-      const childrenNav = []
+      console.log('res', res);
+      const { result } = res;
+      const menuNav = [];
+      const childrenNav = [];
       //      后端数据, 根级树数组,  根级 PID
-      listToTree(result, childrenNav, 0)
-      rootRouter.children = childrenNav
-      menuNav.push(rootRouter)
-      console.log('menuNav', menuNav)
-      const routers = generator(menuNav)
-      routers.push(notFoundRouter)
-      console.log('routers', routers)
-      resolve(routers)
+      listToTree(result, childrenNav, 0);
+      rootRouter.children = childrenNav;
+      menuNav.push(rootRouter);
+      console.log('menuNav', menuNav);
+      const routers = generator(menuNav);
+      routers.push(notFoundRouter);
+      console.log('routers', routers);
+      resolve(routers);
     }).catch(err => {
-      reject(err)
-    })
-  })
-}
+      reject(err);
+    });
+  });
+};
 
 /**
  * 格式化树形结构数据 生成 vue-router 层级路由表
@@ -109,7 +109,7 @@ export const generatorDynamicRouter = (token) => {
  */
 export const generator = (routerMap, parent) => {
   return routerMap.map(item => {
-    const { title, show, hideChildren, hiddenHeaderContent, target, icon } = item.meta || {}
+    const { title, show, hideChildren, hiddenHeaderContent, target, icon } = item.meta || {};
     const currentRouter = {
       // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /dashboard/workplace
       path: item.path || `${parent && parent.path || ''}/${item.key}`,
@@ -128,29 +128,29 @@ export const generator = (routerMap, parent) => {
         target: target,
         permission: item.name
       }
-    }
+    };
     // 是否设置了隐藏菜单
     if (show === false) {
-      currentRouter.hidden = true
+      currentRouter.hidden = true;
     }
     // 是否设置了隐藏子菜单
     if (hideChildren) {
-      currentRouter.hideChildrenInMenu = true
+      currentRouter.hideChildrenInMenu = true;
     }
     // 为了防止出现后端返回结果不规范，处理有可能出现拼接出两个 反斜杠
     if (!currentRouter.path.startsWith('http')) {
-      currentRouter.path = currentRouter.path.replace('//', '/')
+      currentRouter.path = currentRouter.path.replace('//', '/');
     }
     // 重定向
-    item.redirect && (currentRouter.redirect = item.redirect)
+    item.redirect && (currentRouter.redirect = item.redirect);
     // 是否有子菜单，并递归处理
     if (item.children && item.children.length > 0) {
       // Recursion
-      currentRouter.children = generator(item.children, currentRouter)
+      currentRouter.children = generator(item.children, currentRouter);
     }
-    return currentRouter
-  })
-}
+    return currentRouter;
+  });
+};
 
 /**
  * 数组转树形结构
@@ -166,15 +166,15 @@ const listToTree = (list, tree, parentId) => {
         ...item,
         key: item.key || item.name,
         children: []
-      }
+      };
       // 迭代 list， 找到当前菜单相符合的所有子菜单
-      listToTree(list, child.children, item.id)
+      listToTree(list, child.children, item.id);
       // 删掉不存在 children 值的属性
       if (child.children.length <= 0) {
-        delete child.children
+        delete child.children;
       }
       // 加入到树中
-      tree.push(child)
+      tree.push(child);
     }
-  })
-}
+  });
+};

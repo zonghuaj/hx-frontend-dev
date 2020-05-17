@@ -1,5 +1,5 @@
-import api from './index'
-import { axios } from '@/utils/request'
+import api from './index';
+import { axios } from '@/utils/request';
 
 /**
  * login func
@@ -17,7 +17,7 @@ export function login (parameter) {
     url: '/auth/login',
     method: 'post',
     data: parameter
-  })
+  });
 }
 
 export function getSmsCaptcha (parameter) {
@@ -25,7 +25,7 @@ export function getSmsCaptcha (parameter) {
     url: api.SendSms,
     method: 'post',
     data: parameter
-  })
+  });
 }
 
 export function getInfo () {
@@ -35,14 +35,14 @@ export function getInfo () {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
     }
-  })
+  });
 }
 
 export function getCurrentUserNav (token) {
   return axios({
     url: '/user/nav',
     method: 'get'
-  })
+  });
 }
 
 export function logout () {
@@ -52,7 +52,7 @@ export function logout () {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
     }
-  })
+  });
 }
 
 /**
@@ -64,5 +64,5 @@ export function get2step (parameter) {
     url: api.twoStepCode,
     method: 'post',
     data: parameter
-  })
+  });
 }

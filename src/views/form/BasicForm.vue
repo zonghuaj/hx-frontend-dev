@@ -119,20 +119,20 @@ export default {
       // form
       form: this.$form.createForm(this)
 
-    }
+    };
   },
   methods: {
 
     // handler
     handleSubmit (e) {
-      e.preventDefault()
+      e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
           // eslint-disable-next-line no-console
-          console.log('Received values of form: ', values)
+          console.log('Received values of form: ', values);
         }
-      })
+      });
     }
   }
-}
+};
 </script>

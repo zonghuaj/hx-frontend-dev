@@ -60,17 +60,17 @@
 </template>
 
 <script>
-import { triggerWindowResizeEvent } from '@/utils/util'
-import { mapState, mapActions } from 'vuex'
-import { mixin, mixinDevice } from '@/utils/mixin'
-import config from '@/config/defaultSettings'
+import { triggerWindowResizeEvent } from '@/utils/util';
+import { mapState, mapActions } from 'vuex';
+import { mixin, mixinDevice } from '@/utils/mixin';
+import config from '@/config/defaultSettings';
 
-import RouteView from './RouteView'
-import SideMenu from '@/components/Menu/SideMenu'
-import GlobalHeader from '@/components/GlobalHeader'
-import GlobalFooter from '@/components/GlobalFooter'
-import SettingDrawer from '@/components/SettingDrawer'
-import { convertRoutes } from '@/utils/routeConvert'
+import RouteView from './RouteView';
+import SideMenu from '@/components/Menu/SideMenu';
+import GlobalHeader from '@/components/GlobalHeader';
+import GlobalFooter from '@/components/GlobalFooter';
+import SettingDrawer from '@/components/SettingDrawer';
+import { convertRoutes } from '@/utils/routeConvert';
 
 export default {
   name: 'BasicLayout',
@@ -87,7 +87,7 @@ export default {
       production: config.production,
       collapsed: false,
       menus: []
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -96,58 +96,58 @@ export default {
     }),
     contentPaddingLeft () {
       if (!this.fixSidebar || this.isMobile()) {
-        return '0'
+        return '0';
       }
       if (this.sidebarOpened) {
-        return '256px'
+        return '256px';
       }
-      return '80px'
+      return '80px';
     }
   },
   watch: {
     sidebarOpened (val) {
-      this.collapsed = !val
+      this.collapsed = !val;
     }
   },
   created () {
-    const routes = convertRoutes(this.mainMenu.find(item => item.path === '/'))
-    this.menus = (routes && routes.children) || []
-    this.collapsed = !this.sidebarOpened
+    const routes = convertRoutes(this.mainMenu.find(item => item.path === '/'));
+    this.menus = (routes && routes.children) || [];
+    this.collapsed = !this.sidebarOpened;
   },
   mounted () {
-    const userAgent = navigator.userAgent
+    const userAgent = navigator.userAgent;
     if (userAgent.indexOf('Edge') > -1) {
       this.$nextTick(() => {
-        this.collapsed = !this.collapsed
+        this.collapsed = !this.collapsed;
         setTimeout(() => {
-          this.collapsed = !this.collapsed
-        }, 16)
-      })
+          this.collapsed = !this.collapsed;
+        }, 16);
+      });
     }
   },
   methods: {
     ...mapActions(['setSidebar']),
     toggle () {
-      this.collapsed = !this.collapsed
-      this.setSidebar(!this.collapsed)
-      triggerWindowResizeEvent()
+      this.collapsed = !this.collapsed;
+      this.setSidebar(!this.collapsed);
+      triggerWindowResizeEvent();
     },
     paddingCalc () {
-      let left = ''
+      let left = '';
       if (this.sidebarOpened) {
-        left = this.isDesktop() ? '256px' : '80px'
+        left = this.isDesktop() ? '256px' : '80px';
       } else {
-        left = (this.isMobile() && '0') || ((this.fixSidebar && '80px') || '0')
+        left = (this.isMobile() && '0') || ((this.fixSidebar && '80px') || '0');
       }
-      return left
+      return left;
     },
     menuSelect () {
     },
     drawerClose () {
-      this.collapsed = false
+      this.collapsed = false;
     }
   }
-}
+};
 </script>
 
 <style lang="less">

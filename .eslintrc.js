@@ -1,4 +1,4 @@
-x module.exports = {
+module.exports = {
   root: true,
   env: {
     node: true
@@ -41,13 +41,7 @@ x module.exports = {
         'allowTemplateLiterals': true
       }
     ],
-    'semi': [
-      2,
-      'never',
-      {
-        'beforeStatementContinuationChars': 'never'
-      }
-    ],
+    'semi': [2, 'always'],
     'no-delete-var': 2,
     'prefer-const': [
       2,
@@ -72,4 +66,4 @@ x module.exports = {
       }
     }
   ]
-}
+};

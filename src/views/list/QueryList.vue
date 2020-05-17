@@ -6,11 +6,11 @@
 
 <script>
 
-import ATextarea from 'ant-design-vue/es/input/TextArea'
-import AInput from 'ant-design-vue/es/input/Input'
+import ATextarea from 'ant-design-vue/es/input/TextArea';
+import AInput from 'ant-design-vue/es/input/Input';
 // 动态切换组件
-import List from '@/views/list/table/List'
-import Edit from '@/views/list/table/Edit'
+import List from '@/views/list/table/List';
+import Edit from '@/views/list/table/Edit';
 
 export default {
   name: 'TableListWrapper',
@@ -24,27 +24,27 @@ export default {
     return {
       currentComponet: 'List',
       record: ''
-    }
+    };
   },
   created () {
 
   },
   methods: {
     handleEdit (record) {
-      this.record = record || ''
-      this.currentComponet = 'Edit'
-      console.log(record)
+      this.record = record || '';
+      this.currentComponet = 'Edit';
+      console.log(record);
     },
     handleGoBack () {
-      this.record = ''
-      this.currentComponet = 'List'
+      this.record = '';
+      this.currentComponet = 'List';
     }
   },
   watch: {
     '$route.path' () {
-      this.record = ''
-      this.currentComponet = 'List'
+      this.record = '';
+      this.currentComponet = 'List';
     }
   }
-}
+};
 </script>

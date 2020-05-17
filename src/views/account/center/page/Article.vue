@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { ArticleListContent } from '@/components'
-import IconText from '@/views/list/search/components/IconText'
+import { ArticleListContent } from '@/components';
+import IconText from '@/views/list/search/components/IconText';
 
 export default {
   name: 'Article',
@@ -45,29 +45,29 @@ export default {
       loading: true,
       loadingMore: false,
       data: []
-    }
+    };
   },
   mounted () {
-    this.getList()
+    this.getList();
   },
   methods: {
     getList () {
       this.$http.get('/list/article').then(res => {
-        console.log('res', res)
-        this.data = res.result
-        this.loading = false
-      })
+        console.log('res', res);
+        this.data = res.result;
+        this.loading = false;
+      });
     },
     loadMore () {
-      this.loadingMore = true
+      this.loadingMore = true;
       this.$http.get('/list/article').then(res => {
-        this.data = this.data.concat(res.result)
+        this.data = this.data.concat(res.result);
       }).finally(() => {
-        this.loadingMore = false
-      })
+        this.loadingMore = false;
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>
