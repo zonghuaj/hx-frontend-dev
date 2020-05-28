@@ -290,7 +290,7 @@ export default {
   }
   .popover-wrapper {
     /deep/ .antd-pro-pages-forms-style-errorPopover .ant-popover-inner-content {
-      min-width: 256px;
+      min-width: 220px;
       max-height: 290px;
       padding: 0;
       overflow: auto;

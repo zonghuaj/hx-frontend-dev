@@ -137,7 +137,7 @@ body {
       transition: width 0.2s;
 
       &.ant-header-side-opened {
-        width: calc(100% - 256px);
+        width: calc(100% - 220px);
       }
 
       &.ant-header-side-closed {
@@ -152,6 +152,7 @@ body {
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     position: relative;
+    display: flex;
   }
 
   .header,
@@ -159,6 +160,9 @@ body {
     .user-wrapper {
       float: right;
       height: 100%;
+      display: flex;
+      margin-left: auto;
+      overflow: hidden;
 
       .action {
         cursor: pointer;
@@ -523,4 +527,10 @@ body {
   }
 }
 
+.ant-menu-item {
+  font-size: 12px;
+}
+.ant-menu-horizontal {
+  border-bottom:0px ;
+}
 
