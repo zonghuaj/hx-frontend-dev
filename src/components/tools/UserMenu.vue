@@ -1,7 +1,7 @@
 <template>
   <div class="user-wrapper">
     <div>
-      <a-menu class="usermenu-display-inline" mode="horizontal">
+      <a-menu class="usermenu-display-inline" mode="horizontal" style="display:none;">
         <a-menu-item key="mail1"> <a-icon type="mail" />基础信息</a-menu-item>
         <a-menu-item key="mail2"> <a-icon type="mail" />基础信息</a-menu-item>
         <a-menu-item key="mail3"> <a-icon type="mail" />基础信息</a-menu-item>
